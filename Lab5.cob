@@ -49,14 +49,26 @@
           03 FILLER PIC X(3).
           03 P-PAYMENT1 PIC 9999.99.
           03 FILLER PIC X(3).
-          03 P-PAYMENT2 PIC 9999.99.
-          03 FILLER PIC X(3).
-          03 P-PAYMENT3 PIC 9999.99.
-          03 FILLER PIC X(3).
-          03 P-PAYMENT4 PIC 9999.99.
-          03 FILLER PIC X(3).
           03 P-TOTAL PIC 99999.99.
           03 FILLER PIC X(3).
+          03 P-BAL PIC 99999.99.
+      01 PRNT-DATA2.
+          03 FILLER PIC X(40)
+          03 P-PAYMENT2 PIC 9999.99.
+      01 PRNT-DATA3.
+          03 FILLER PIC X(40)
+          03 P-PAYMENT3 PIC 9999.99.
+      01 PRNT-DATA4.
+          03 FILLER PIC X(40)
+          03 P-PAYMENT4 PIC 9999.99.
+      01 PRNT-DATA5.
+          03 FILLER X(30).
+          03 PIC X(10) VALUE 'TOTAL PAID'.
+          03 FILLER X(5)
+          03 P-TOTAL PIC 99999.99.
+          03 FILLER PIC X(10).
+          03 PIC X(7) VALUE 'BALANCE'.
+          03 FILLER X(5).
           03 P-BAL PIC 99999.99.
 
       **************************************************************
@@ -67,12 +79,8 @@
           03              PIC X(10) VALUE 'DEGREE'.
           03              PIC X(8) VALUE 'YEAR'.
           03              PIC X(10) VALUE 'LOAN'.
-          03              PIC X(10) VALUE 'PAID1'.
-          03              PIC X(10) VALUE 'PAID2'.
-          03              PIC X(10) VALUE 'PAID3'.
-          03              PIC X(10) VALUE 'PAID4'.
-          03              PIC X(10) VALUE 'TOT PAID'.
-          03              PIC X(10) VALUE 'BALANCE'.
+          03              PIC X(10) VALUE 'PAID'.
+
         01 MISC.
       **************************************************************
       * END OF FILE (EOF) SWITCHES *
@@ -120,6 +128,14 @@
            SUBTRACT TOT FROM I-LOAN
            GIVING P-BAL.
           WRITE PRNT-REC FROM PRNT-DATA1
+            AFTER ADVANCING 1 LINE.
+          WRITE PRNT-REC FROM PRNT-DATA2
+            AFTER ADVANCING 1 LINE.
+          WRITE PRNT-REC FROM PRNT-DATA3
+            AFTER ADVANCING 1 LINE.
+          WRITE PRNT-REC FROM PRNT-DATA4
+            AFTER ADVANCING 1 LINE.
+          WRITE PRNT-REC FROM PRNT-DATA5
             AFTER ADVANCING 1 LINE.
       **************************************************************
       * READS THE INPUT FILE *
